@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <!-- style code -->
+        
+        <meta charset="utf-8">
+        <title>WebScockets 101</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+        <link href="/styles.css" rel="stylesheet" />
+    </head>
+    
+    <body>
+
+<!--CHAT APP INTERFACE HERE-->
+        <div id="mario-chat">
+            <h2>Mario Chat</h2>
+            
+            <h3 id='session_name'></h3>
+            <div id="chat-window">
+                <div id="output"></div>
+                <div id="feedback"></div>
+            </div>
+            
+            <!--TO TAKE USER INPUTS-->
+            <input id="handle" type="text" placeholder="Handle" />
+            <input id="message" type="text" placeholder="Message" />
+            <button id="send">Send</button>
+        </div>
+
+
+        
+        
+ 
+ <!--timer   -->
+ <!--->
+<div class="timer-container" id="#run-the-timer">
+<span class="min">15</span>:<span class="sec">00</span>
+ 
+<span class="timeout_message_show" style="display:none;">We are Sorry, your time is up !</span>
+ 
+</div>
+
+
+<script>
+    
+    window.onload = function () {
+ 
+var fragmentTime;
+ 
+jQuery('.timeout_message_show').hide();
+ 
+var min = jQuery('span.min').text();
+ 
+var sec = jQuery('span.sec').text();
+ 
+min = parseInt(min);
+ 
+sec = parseInt(sec);
+ 
+if (isNaN(min)) {
+ 
+min = 00;
+ 
+}
+ 
+if (isNaN(sec)) {
+ 
+sec = 00;
+ 
+}
+ 
+if (min == 60) {
+ 
+min = 59;
+ 
+}
+ 
+if (sec == 60) {
+ 
+sec = 59;
+ 
+}
+ 
+fragmentTime = (60 * min) + (sec);
+ 
+displayMin = document.querySelector('span.min');
+ 
+displaySec = document.querySelector('span.sec');
+ 
+startTimer(fragmentTime, displayMin, displaySec);
+ 
+};
+
+
+function startTimer(duration, displayMin, displaySec) {
+ 
+var timer= duration,
+ 
+displayMinu, displaySec;
+ 
+var timeIntervalID = setInterval(function () {
+ 
+min = parseInt(timer / 60, 10)
+ 
+sec = parseInt(timer % 60, 10);
+ 
+min = min < 10 ? "0" + min : min;
+ 
+sec = sec < 10 ? "0" + sec : sec;
+ 
+displayMin.textContent = min;
+ 
+displaySec.textContent = sec;
+ 
+if (--timer < 0) {
+ 
+timer = 0;
+ 
+if (timer == 0) {
+ 
+clearInterval(timeIntervalID);
+ 
+alert(jQuery('.timeout_message_show').text());
+ 
+}
+ 
+}
+ 
+}, 1000);
+ 
+}
+</script>
+
+
+
+    </body>
+    
+    <!--LINKIN TO ENTERNAL JS FILES-->
+    <script src="/chat.js"></script>
+    
+    <script src="script.js"></script>
+</html>
